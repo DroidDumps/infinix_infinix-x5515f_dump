@@ -1,0 +1,4 @@
+service memsicp /vendor/bin/memsicp
+    user system
+    group system
+    class main

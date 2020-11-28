@@ -1,0 +1,23 @@
+service bootanim /system/bin/bootanimation
+    class core animation
+    user graphics
+    group graphics audio
+    disabled
+    oneshot
+    writepid /dev/stune/top-app/tasks
+####SID1:add by chenqiao for KBSHLES-18(INEHSJY-337) 2080923 begin
+service banim_shutmp3 /system/bin/bootanimation shut mp3
+    class core
+    user graphics
+    group graphics audio
+    disabled
+    oneshot
+    writepid /dev/stune/top-app/tasks
+service banim_shutnomp3 /system/bin/bootanimation shut nomp3
+    class core
+    user graphics
+    group graphics audio
+    disabled
+    oneshot
+    writepid /dev/stune/top-app/tasks
+####SID1:add by chenqiao for KBSHLES-18(INEHSJY-337) 2080923 end
