@@ -1,0 +1,18 @@
+com.android.quicksearchbox
+com.android.calendar
+com.android.dreams.basic
+com.android.musicfx
+com.android.calculator2
+com.android.email
+com.android.exchange
+#OS:add by wangweikang start
+#SID:modify XWWYWPO-902 by weike.xu 20180806 start
+#com.transsion.calculator
+#com.transsion.soundrecorder
+#SID:modify XWWYWPO-902 by weike.xu 20180806 end
+#com.rlk.xcloud
+#com.rlk.feedback
+#com.transsion.filemanager
+#com.transsion.onekeytransfer
+#com.infinix.xshare
+#OS:add by wangweikang end

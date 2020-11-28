@@ -1,0 +1,14 @@
+com.mediatek.vnet
+com.iflytek.inputmethod
+com.hugeland.cdsplus
+com.transsion.carlcare
+com.hatsune.eagleee
+com.facebook.katana
+com.instagram.android
+com.facebook.orca
+com.flipkart.android
+com.fooview.android.fooview.transsion
+com.kikaoem.qisiemoji.inputmethod.cy.se
+com.gameloft.android.GloftSMIF
+com.emoji.keyboard.touchpal
+com.whatsapp

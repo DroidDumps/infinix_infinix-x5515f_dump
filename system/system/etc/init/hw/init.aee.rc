@@ -1,0 +1,59 @@
+on post-fs-data
+    mkdir /data/dumpsys 0775 system system
+    mkdir /data/core 0775 system system
+    mkdir /data/misc/aee_interim 0775 system system
+
+on post-fs
+    start aee_aed
+    start aee_aed64
+
+#chencheng open create db file 20171023
+on init
+    #SID: add XWWYWPOAEA-117 by xuetao.liu 20180809 start
+    setprop ro.aee.enforcing no
+    #SID: add XWWYWPOAEA-117 by xuetao.liu 20180809 end
+
+#SID: add for XWWYWPOAEA-117 by wangxi 20180906 start
+on property:persist.sys.user.root.build=yes
+    setprop persist.vendor.debug.fdleak 0
+    setprop persist.vendor.aeev.core.direct enable
+    setprop persist.vendor.aeev.core.dump  enable
+    setprop persist.vendor.aee.db.count 99
+    setprop persist.vendor.aee.fatal_db.count 99
+    setprop persist.vendor.aeev.db.count 99
+    setprop persist.vendor.aeev.fatal_db.count 99
+
+#SID: add for XWWYWPOAEA-117 by wangxi 20180906 end
+
+on property:ro.build.type=eng
+    write /proc/sys/fs/suid_dumpable 1
+    write /proc/sys/kernel/core_pattern "|/system/bin/aee_core_forwarder /data/core/ %p %s UID=%u GID=%g"
+    write /proc/sys/kernel/core_pipe_limit 3
+
+on property:ro.build.type=userdebug
+    write /proc/sys/fs/suid_dumpable 1
+    write /proc/sys/kernel/core_pattern "|/system/bin/aee_core_forwarder /data/core/ %p %s UID=%u GID=%g"
+    write /proc/sys/kernel/core_pipe_limit 3
+
+
+on property:persist.vendor.aeev.core.dump=enable
+    write /proc/sys/fs/suid_dumpable 1
+    write /proc/sys/kernel/core_pattern "|/system/bin/aee_core_forwarder /data/core/ %p %s UID=%u GID=%g"
+    write /proc/sys/kernel/core_pipe_limit 3
+
+on init
+    write /proc/self/coredump_filter 39
+    export LD_PRELOAD libdirect-coredump.so
+   #SID: add XWWYWPOAEA-117 by wangxi 20180815 start
+    setprop persist.vendor.mtk.aee.filter 0
+   #SID: add XWWYWPOAEA-117 by wangxi 20180815 end
+
+#SID: add for XWWYWPOAEA-117 by wangxi 20180906 start
+#on property:persist.vendor.debug.fdleak=1
+#    export LD_PRELOAD libudf.so:libdirect-coredump.so
+#SID: add for XWWYWPOAEA-117 by wangxi 20180906 end
+
+on property:sys.boot_completed=1
+    start aee-reinit
+
+import /init.preload.rc
